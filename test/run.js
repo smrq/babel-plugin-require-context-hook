@@ -1,4 +1,4 @@
-require('babel-register')({
+require('@babel/register')({
 	plugins: [ require('../index') ]
 });
 require('../register')();
