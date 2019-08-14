@@ -6,7 +6,8 @@ function context(
 ) {
 	const path = require('path');
 	const fs = require('fs');
-
+	const replaceRegExp = /\?.*/;
+	
 	function enumerateFiles(basedir, dir) {
 		let result = [];
 		fs.readdirSync(path.join(basedir, dir)).forEach(function(file) {
@@ -23,7 +24,7 @@ function context(
 		return result;
 	}
 
-	const absoluteDirectory = path.resolve(basedir, directory);
+	const absoluteDirectory = path.resolve(basedir, directory.replace(replaceRegExp, ''));
 	const keys = enumerateFiles(absoluteDirectory, '.');
 
 	function requireContext(key) {
